@@ -1,4 +1,5 @@
 const { ApolloServer, gql } = require('apollo-server');
+const { v1: uuid } = require('uuid');
 
 let authors = [
     {
@@ -100,10 +101,28 @@ const typeDefs = gql`
         genres: [String!]!
         id: ID!
     }
+    type Author {
+        name: String!
+        born: Int
+        bookCount: Int!
+        id: ID!
+    }
+
     type Query {
         bookCount: Int!
         authorCount: Int!
-        allBooks: [Book!]!
+        allBooks(author: String, genre: String): [Book!]!
+        allAuthors: [Author!]!
+    }
+
+    type Mutation {
+        addBook(
+            title: String!
+            author: String!
+            published: Int!
+            genres: [String!]!
+        ): Book
+        editAuthor(name: String!, setBornTo: Int!): Author
     }
 `;
 
@@ -111,7 +130,66 @@ const resolvers = {
     Query: {
         bookCount: () => books.length,
         authorCount: () => authors.length,
-        allBooks: () => books,
+        allBooks: (root, args) => {
+            if (!args.author && !args.genre) {
+                return books;
+            }
+            const byAuthor = () =>
+                books.filter((book) => book.author === args.author);
+            const byGenre = () =>
+                books.filter((book) => book.genres.includes(args.genre));
+            // if there is `author` in the args and `genre` not
+            if (!args.genre) {
+                return byAuthor();
+            }
+            // if there is `genre` in the args and `author` not
+            if (!args.author) {
+                console.log('here');
+                return byGenre();
+            }
+            // if both included, also remove duplicated values from array
+            const resArray = [...byAuthor(), ...byGenre()];
+            // creates an Map([[key, value]]) obj with `id` key, and value as `book`
+            // There can't be same two items in the Map of with same key which is `id`
+            // Get values() as a iterator obj and return it as an array
+            return [
+                ...new Map(resArray.map((book) => [book['id'], book])).values(),
+            ];
+        },
+        allAuthors: () => authors,
+    },
+    Author: {
+        // we can modify every field's query
+        bookCount: (root) => {
+            const booksOfAuthor = books.filter(
+                (book) => book.author === root.name
+            );
+            return booksOfAuthor.length;
+        },
+    },
+    Mutation: {
+        addBook: (root, args) => {
+            const author = authors.find(
+                (author) => author.name === args.author
+            );
+            if (!author) {
+                // there is no author in datastore same with in args
+                const newAuthor = { name: args.author, id: uuid() };
+                authors = [...authors, newAuthor];
+            }
+            const book = { ...args, id: uuid() };
+            books = [...books, book];
+            return book;
+        },
+        editAuthor: (root, args) => {
+            const author = authors.find((author) => author.name === args.name);
+            if (!author) {
+                // there is no author in datastore same with in args
+                return null;
+            }
+            author.born = args.setBornTo;
+            return author;
+        },
     },
 };
 
