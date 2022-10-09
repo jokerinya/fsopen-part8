@@ -144,7 +144,6 @@ const resolvers = {
             }
             // if there is `genre` in the args and `author` not
             if (!args.author) {
-                console.log('here');
                 return byGenre();
             }
             // if both included, also remove duplicated values from array
