@@ -33,3 +33,9 @@ Make sure that the Authors and Books views are kept up to date after a new book 
 In case of problems when making queries or mutations, check from the developer console what the server response is:
 
 ![Error](./readmeimg/42ea.png)
+
+## 8.11: Authors birth year
+
+Implement a possibility to set authors birth year. You can create a new view for setting the birth year, or place it on the Authors view:
+
+![Authors birth year](./readmeimg/20.png)
