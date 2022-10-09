@@ -15,3 +15,9 @@ You can implement your application either using the render prop components Query
 Implement an Authors view to show the details of all authors on a page as follows:
 
 ![Authors View](./readmeimg/16.png)
+
+## 8.9: Books view
+
+Implement a Books view to show on a page all other details of all books except their genres.
+
+![Book view](./readmeimg/17.png)
