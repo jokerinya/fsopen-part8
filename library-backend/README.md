@@ -299,3 +299,5 @@ If the author is not in the system, null is returned:
     }
 }
 ```
+
+## Exercises 8.8.-8.12 : [library-frontend](https://github.com/jokerinya/fsopen-part8/tree/main/library-frontend)
