@@ -21,3 +21,15 @@ Implement an Authors view to show the details of all authors on a page as follow
 Implement a Books view to show on a page all other details of all books except their genres.
 
 ![Book view](./readmeimg/17.png)
+
+## 8.10: Adding a book
+
+Implement a possibility to add new books to your application. The functionality can look like this:
+
+![Add a Book](./readmeimg/18.png)
+
+Make sure that the Authors and Books views are kept up to date after a new book is added.
+
+In case of problems when making queries or mutations, check from the developer console what the server response is:
+
+![Error](./readmeimg/42ea.png)
