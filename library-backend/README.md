@@ -346,3 +346,13 @@ type Mutation {
     editAuthor(name: String!, setBornTo: Int!): Author
 }
 ```
+
+## 8.14: Database, part 2
+
+Complete the program so that all queries (to get `allBooks` working with the parameter `author` and `bookCount` field of an author object is not required) and mutations work.
+
+You might find [this](https://www.mongodb.com/docs/manual/reference/operator/query/in/) useful.
+
+## 8.15 Database, part 3
+
+Complete the program so that database validation errors (e.g. book title or author name being too short) are handled sensibly. This means that they cause `UserInputError` with a suitable error message to be thrown.
