@@ -49,3 +49,9 @@ A solution using the react select library looks as follows:
 ![Advanced birth year](./readmeimg/21.png)
 
 ## Exercises 8.13.-8.16 : [library-backend](https://github.com/jokerinya/fsopen-part8/tree/main/library-backend)
+
+> ## Exercises 8.17.-8.22.
+
+## 8.17 Listing books
+
+After the backend changes, the list of books does not work anymore. Fix it.

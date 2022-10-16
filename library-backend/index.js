@@ -88,7 +88,6 @@ const resolvers = {
         allBooks: async (root, args) => {
             // If there is no argument
             if (!args.author && !args.genre) {
-                console.log(await Book.find({}));
                 return Book.find({}).populate('author');
             }
             // if there is `author` in the args and `genre` not
