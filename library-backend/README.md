@@ -301,3 +301,48 @@ If the author is not in the system, null is returned:
 ```
 
 ## Exercises 8.8.-8.12 : [library-frontend](https://github.com/jokerinya/fsopen-part8/tree/main/library-frontend)
+
+> ## Exercises 8.13.-8.16.
+
+The following exercises are quite likely to break your frontend. Do not worry about it yet; the frontend shall be fixed and expanded in the next chapter.
+
+## 8.13: Database, part 1
+
+Change the library application so that it saves the data to a database. You can find the _mongoose schema_ for books and authors from [here](https://github.com/fullstack-hy/misc/blob/main/library-schema.md).
+
+Let's change the book graphql schema a little
+
+```gql
+type Book {
+    title: String!
+    published: Int!
+    author: Author!
+    genres: [String!]!
+    id: ID!
+}
+```
+
+so that instead of just the author's name, the book object contains all the details of the author.
+
+You can assume that the user will not try to add faulty books or authors, so you don't have to care about validation errors.
+
+The following things do not have to work just yet:
+
+-   allBooks query with parameters
+-   bookCount field of an author object
+-   author field of a book
+-   editAuthor mutation
+
+**Note:** despite the fact that author is now an _object_ within a book, the schema for adding a book can remain same, only the _name_ of the author is given as a parameter
+
+```gql
+type Mutation {
+    addBook(
+        title: String!
+        author: String!
+        published: Int!
+        genres: [String!]!
+    ): Book!
+    editAuthor(name: String!, setBornTo: Int!): Author
+}
+```
