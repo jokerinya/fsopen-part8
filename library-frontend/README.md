@@ -55,3 +55,22 @@ A solution using the react select library looks as follows:
 ## 8.17 Listing books
 
 After the backend changes, the list of books does not work anymore. Fix it.
+
+## 8.18 Log in
+
+Adding new books and changing the birth year of an author do not work because they require a user to be logged in.
+
+Implement login functionality and fix the mutations.
+
+It is not necessary yet to handle validation errors.
+
+You can decide how the login looks on the user interface. One possible solution is to make the login form into a separate view which can be accessed through a navigation menu:
+![Log in](./readmeimg/26.png)
+
+The login form:
+
+![Login Form](./readmeimg/27.png)
+
+When a user is logged in, the navigation changes to show the functionalities which can only be done by a logged-in user:
+
+![Navigation](./readmeimg/28.png)
