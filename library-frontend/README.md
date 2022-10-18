@@ -74,3 +74,11 @@ The login form:
 When a user is logged in, the navigation changes to show the functionalities which can only be done by a logged-in user:
 
 ![Navigation](./readmeimg/28.png)
+
+## 8.19 Books by genre, part 1
+
+Complete your application to filter the book list by genre. Your solution might look something like this:
+
+![By genre](./readmeimg/30.png)
+
+In this exercise, the filtering can be done using just React.

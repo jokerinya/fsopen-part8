@@ -11,7 +11,7 @@ export const ALL_AUTHORS = gql`
     }
 `;
 
-export const ALL_BOOKS_WITHOUT_GENRES = gql`
+export const ALL_BOOKS_WITHOUT_PARAMS = gql`
     query {
         allBooks {
             title
@@ -19,6 +19,7 @@ export const ALL_BOOKS_WITHOUT_GENRES = gql`
                 name
             }
             published
+            genres
             id
         }
     }
