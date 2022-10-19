@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
-import { useApolloClient } from '@apollo/client';
+import { useApolloClient, useQuery } from '@apollo/client';
 
 import Authors from './components/Authors';
 import Books from './components/Books';
 import LoginForm from './components/LoginForm';
 import NewBook from './components/NewBook';
+import RecommendBooks from './components/RecommendBooks';
 
 const App = () => {
     const [page, setPage] = useState('authors');
@@ -19,6 +20,7 @@ const App = () => {
         setToken(null);
         localStorage.removeItem('library-user-token');
         client.resetStore(); // clears the apollo cache
+        setPage('authors');
     };
 
     return (
@@ -29,6 +31,9 @@ const App = () => {
                 {token ? (
                     <>
                         <button onClick={() => setPage('add')}>add book</button>
+                        <button onClick={() => setPage('recommend')}>
+                            recommend
+                        </button>
                         <button onClick={logout}>logout</button>
                     </>
                 ) : (
@@ -36,7 +41,7 @@ const App = () => {
                 )}
             </div>
 
-            <Authors show={page === 'authors'} user={!!token} />
+            <Authors show={page === 'authors'} token={!!token} />
 
             <Books show={page === 'books'} />
 
@@ -47,6 +52,8 @@ const App = () => {
                 setToken={setToken}
                 setPage={setPage}
             />
+
+            <RecommendBooks show={page === 'recommend'} token={!!token} />
         </div>
     );
 };

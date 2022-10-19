@@ -93,12 +93,14 @@ const resolvers = {
             // if there is `author` in the args and `genre` not
             if (args.author && !args.genre) {
                 const author = await Author.findOne({ name: args.author });
-                return await Book.find({ author });
+                return await Book.find({ author }).populate('author');
                 // return byAuthor();
             }
             // if there is `genre` in the args and `author` not
             if (!args.author && args.genre) {
-                return await Book.find({ genres: { $in: [args.genre] } });
+                return await Book.find({
+                    genres: { $in: [args.genre] },
+                }).populate('author');
             }
             // Both arguments
             const author = await Author.findOne({ name: args.author });
