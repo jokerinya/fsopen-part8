@@ -40,9 +40,9 @@ const resolvers = {
             return await Book.find({
                 author: author.id,
                 genres: { $in: [args.genre] },
-            });
+            }).populate('author');
         },
-        allAuthors: async () => Author.find({}),
+        allAuthors: async () => Author.find({}).populate('books'),
         me: (root, args, context) => {
             return context.currentUser;
         },
@@ -50,9 +50,10 @@ const resolvers = {
     Author: {
         // we can modify every field's query
         bookCount: async (root) => {
-            const author = await Author.find({ name: root.name });
-            const booksOfAuthor = await Book.countDocuments({ author });
-            return booksOfAuthor;
+            // const author = await Author.find({ name: root.name });
+            // const booksOfAuthor = await Book.countDocuments({ author });
+            // return booksOfAuthor;
+            return root.books.length;
         },
     },
     Mutation: {
@@ -76,6 +77,8 @@ const resolvers = {
             const book = new Book({ ...args, author });
             try {
                 await book.save();
+                // add book to authors list
+                await author.updateOne({ $push: { books: book } });
             } catch (error) {
                 throw new UserInputError(error.message, {
                     invalidArgs: args,
@@ -83,7 +86,7 @@ const resolvers = {
             }
             // ws subscription
             pubSub.publish('BOOK_ADDED', { bookAdded: book });
-            return book;
+            return await book.populate('author');
         },
         editAuthor: async (root, args, context) => {
             const currentUser = context.currentUser;

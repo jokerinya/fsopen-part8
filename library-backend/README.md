@@ -405,3 +405,16 @@ Make the mutations `addBook` and `editAuthor` possible only if the request inclu
 Do a backend implementation for subscription `bookAdded`, which returns the details of all new books to its subscribers.
 
 ## Exercises 8.24.-8.25 : [library-frontend](https://github.com/jokerinya/fsopen-part8/tree/main/library-frontend)
+
+## 8.26: n+1
+
+Solve the n+1 problem of the following query using any method you like.
+
+```gql
+query {
+    allAuthors {
+        name
+        bookCount
+    }
+}
+```

@@ -110,3 +110,5 @@ Start using subscriptions in the client, and subscribe to `bookAdded`. When new 
 ## 8.25: Subscriptions - client, part 2
 
 Keep the application's view updated when the server notifies about new books. You can test your implementation by opening the app in two browser tabs and adding a new book in one tab. Adding the new book should update the view in both tabs.
+
+## Exercises 8.26 : [library-backend](https://github.com/jokerinya/fsopen-part8/tree/main/library-backend)
