@@ -418,3 +418,15 @@ query {
     }
 }
 ```
+
+## Submitting exercises and getting the credits
+
+Exercises of this part are submitted via [the submissions system](https://studies.cs.helsinki.fi/stats/courses/fs-graphql) just like in the previous parts, but unlike previous parts, the submission goes to different "course instance". Remember that you have to finish at least 22 exercises to pass this part!
+
+Once you have completed the exercises and want to get the credits, let us know through the exercise submission system that you have completed the course:
+
+![Submission](./readmeimg/21.png)
+
+**Note** that you need a registration to the corresponding course part for getting the credits registered, see [here](https://fullstackopen.com/en/part0/general_info#parts-and-completion) for more information.
+
+You can download the certificate for completing this part by clicking one of the flag icons. The flag icon corresponds to the certificate's language.
