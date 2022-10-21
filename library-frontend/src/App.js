@@ -1,13 +1,29 @@
 import { useState } from 'react';
 
 import { useApolloClient, useSubscription } from '@apollo/client';
+import { BOOK_ADDED, ALL_BOOKS_WITHOUT_PARAMS } from './queries';
 
 import Authors from './components/Authors';
 import Books from './components/Books';
 import LoginForm from './components/LoginForm';
 import NewBook from './components/NewBook';
 import RecommendBooks from './components/RecommendBooks';
-import { BOOK_ADDED } from './queries';
+
+export const updateCache = (cache, query, addedBook) => {
+    const uniqByName = (a) => {
+        let seen = new Set();
+        return a.filter((item) => {
+            let k = item.name;
+            return seen.has(k) ? false : seen.add(k);
+        });
+    };
+
+    cache.updateQuery(query, ({ allBooks }) => {
+        return {
+            allBooks: uniqByName(allBooks.concat(addedBook)),
+        };
+    });
+};
 
 const App = () => {
     const [page, setPage] = useState('authors');
@@ -18,6 +34,11 @@ const App = () => {
         onSubscriptionData: ({ subscriptionData }) => {
             const book = subscriptionData.data.bookAdded;
             window.alert(`${book.author.name}'s ${book.title} has been added`);
+            updateCache(
+                client.cache,
+                { query: { ALL_BOOKS_WITHOUT_PARAMS } },
+                book
+            );
         },
     });
 
