@@ -403,3 +403,5 @@ Make the mutations `addBook` and `editAuthor` possible only if the request inclu
 ## 8.23: Subscriptions - server
 
 Do a backend implementation for subscription `bookAdded`, which returns the details of all new books to its subscribers.
+
+## Exercises 8.24.-8.25 : [library-frontend](https://github.com/jokerinya/fsopen-part8/tree/main/library-frontend)

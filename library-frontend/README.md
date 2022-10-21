@@ -100,3 +100,9 @@ This and the next exercises are quite **challenging** like it should be this lat
 If you did the previous exercise, that is, fetch the books in a genre with GraphQL, ensure somehow that the books view is kept up to date. So when a new book is added, the books view is updated at least when a genre selection button is pressed.
 
 _When new genre selection is not done, the view does not have to be updated._
+
+## Exercises 8.23 : [library-backend](https://github.com/jokerinya/fsopen-part8/tree/main/library-backend)
+
+## 8.24: Subscriptions - client, part 1
+
+Start using subscriptions in the client, and subscribe to `bookAdded`. When new books are added, notify the user. Any method works. For example, you can use the `window.alert` function.
