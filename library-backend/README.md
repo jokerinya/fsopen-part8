@@ -395,3 +395,11 @@ Create resolvers for query me and the new mutations `createUser` and `login`. Li
 Make the mutations `addBook` and `editAuthor` possible only if the request includes a valid token.
 
 (Don't worry about fixing the frontend for the moment.)
+
+## Exercises 8.16.-8.22 : [library-frontend](https://github.com/jokerinya/fsopen-part8/tree/main/library-frontend)
+
+> ## Exercises 8.23-8.26
+
+## 8.23: Subscriptions - server
+
+Do a backend implementation for subscription `bookAdded`, which returns the details of all new books to its subscribers.
